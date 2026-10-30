@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5f0">
+  <title>Quality-Aware X-Ray AI | Research Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="results.css">
+  <link rel="stylesheet" href="prediction.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="#top"><span class="brand-mark">X</span><span>XRAY<span class="brand-light">LAB</span></span></a>
+      <div class="side-label">RESEARCH PROJECT</div>
+      <nav aria-label="Main navigation">
+        <a class="nav-link active" href="#overview"><span>01</span> Overview</a>
+        <a class="nav-link" href="#results"><span>02</span> Pilot results</a>
+        <a class="nav-link" href="#prediction"><span>03</span> Try a sample</a>
+        <a class="nav-link" href="#workflow"><span>04</span> Method</a>
+        <a class="nav-link" href="#explorer"><span>05</span> Quality explorer</a>
+        <a class="nav-link" href="#limits"><span>06</span> Limitations</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="status-dot"></span>
+        <div><strong>Research prototype</strong><small>Not for clinical use</small></div>
+      </div>
+    </aside>
+
+    <main id="top">
+      <header class="topbar"><span>CHEST X-RAY · PREPROCESSING STUDY</span><span class="topbar-right">PILOT · SEED 42 <i></i></span></header>
+      <section class="hero" id="overview">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> QUALITY-AWARE AI RESEARCH</div>
+          <h1>Can image quality<br>guide <em>better</em> diagnosis?</h1>
+          <p class="hero-text">A study of whether choosing image preprocessing based on brightness, contrast and noise can make chest X-ray classification more reliable.</p>
+          <a class="primary-link" href="#results">Explore the pilot results <span>↘</span></a>
+          <div class="hero-foot"><span class="pulse"></span> Four-class image classification <span class="foot-sep">·</span> EfficientNet-B0</div>
+        </div>
+        <div class="hero-art" aria-label="Illustration of chest X-ray quality analysis">
+          <div class="scan-card">
+            <div class="scan-top"><span>IMAGE QUALITY SCAN</span><span class="scan-live">● ANALYZED</span></div>
+            <div class="xray-frame"><div class="scan-grid"></div><div class="lung lung-left"></div><div class="lung lung-right"></div><div class="spine"></div><div class="scan-beam"></div><div class="scan-cross">+</div></div>
+            <div class="scan-readouts"><div><small>BRIGHTNESS</small><strong>118.4</strong><span class="readout-bar"><i style="width:59%"></i></span></div><div><small>CONTRAST</small><strong>42.7</strong><span class="readout-bar"><i style="width:68%"></i></span></div><div><small>NOISE EST.</small><strong>12.1</strong><span class="readout-bar"><i style="width:38%"></i></span></div></div>
+            <div class="scan-route"><span class="route-dot"></span><span>ROUTING DECISION</span><strong>Standard preprocessing</strong><span class="route-arrow">↗</span></div>
+          </div>
+          <div class="floating-tag tag-a"><span class="tag-icon">↗</span><span>ADAPTIVE<br><b>IMAGE ROUTING</b></span></div>
+          <div class="floating-tag tag-b"><span class="tag-spark">✳</span><span>4 QUALITY<br><b>MEASURES</b></span></div>
+          <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+        </div>
+      </section>
+
+      <section class="stat-strip" aria-label="Project data summary">
+        <div class="stat-item"><span class="stat-icon">▦</span><div><strong>21,165</strong><small>CHEST X-RAYS</small></div></div>
+        <div class="stat-item"><span class="stat-icon">◉</span><div><strong>4</strong><small>IMAGE CLASSES</small></div></div>
+        <div class="stat-item"><span class="stat-icon">⌁</span><div><strong>3</strong><small>PREPROCESSING ARMS</small></div></div>
+        <div class="stat-item"><span class="stat-icon">✓</span><div><strong>0</strong><small>EXACT SPLIT DUPLICATES</small></div></div>
+        <div class="dataset-note">COVID-19 Radiography Database<br><span>COVID · Lung Opacity · Normal · Viral Pneumonia</span></div>
+      </section>
+
+      <section class="section results-section" id="results">
+        <div class="section-heading"><div><div class="eyebrow">01 / CURRENT EVIDENCE</div><h2>Best method depends<br><em>on image conditions.</em></h2></div><div class="section-note">Single seed · 3,174 held-out images<br>EfficientNet-B0 · 7 configurations</div></div>
+        <div class="results-grid">
+          <article class="panel main-chart-panel"><div class="panel-head"><div><h3>Clean test performance</h3><p>Seven configurations · EfficientNet-B0 · seed 42</p></div><span class="panel-chip">HELD-OUT TEST</span></div><div id="clean-chart" class="chart" aria-label="Chart of clean test accuracy"></div><div class="chart-caption">Fixed CLAHE led clean accuracy (95.43%) and macro F1 (0.9576). Adaptive preprocessing did not improve macro F1 over Original.</div></article>
+          <article class="panel score-panel"><div class="panel-head"><div><h3>Best stress-test accuracy</h3><p>Winner varies by degradation type</p></div><span class="panel-chip chip-warm">SYNTHETIC</span></div><div class="stress-list"><div class="stress-row"><div class="stress-symbol">☼</div><div class="stress-info"><strong>Underexposure</strong><small>Fixed CLAHE</small></div><b>93.67<span>%</span></b></div><div class="stress-row"><div class="stress-symbol">〰</div><div class="stress-info"><strong>Gaussian blur</strong><small>Fixed CLAHE + Wiener</small></div><b>92.03<span>%</span></b></div><div class="stress-row"><div class="stress-symbol">⋰</div><div class="stress-info"><strong>Gaussian noise</strong><small>Fixed Wiener · still poor</small></div><b>20.29<span>%</span></b></div></div><div class="caution-box"><span>!</span><p>Controlled synthetic changes are not a substitute for testing on real low-quality scans.</p></div></article>
+        </div>
+        <div class="metrics-table-wrap"><div class="table-title"><h3>Full EfficientNet-B0 comparison</h3><span>Higher is better · one seed · no confidence intervals</span></div><table><thead><tr><th>PREPROCESSING ARM</th><th>ACCURACY</th><th>MACRO F1</th><th>ROC-AUC</th><th>TEST N</th></tr></thead><tbody id="metrics-body"></tbody></table><div class="table-import"><label for="csv-file">Load another comparison CSV <span>Choose <code>comparison.csv</code></span></label><input id="csv-file" type="file" accept=".csv,text/csv"><p id="import-status">To display other runs, select their generated <code>comparison.csv</code>.</p></div></div>
+      </section>
+
+      <section class="section prediction-section" id="prediction"><div class="section-heading"><div><div class="eyebrow">LIVE MODEL DEMONSTRATION</div><h2>Try a sample <em>X-ray.</em></h2></div><div class="section-note">EfficientNet-B0 · adaptive preprocessing<br>Runs on this computer</div></div><div class="prediction-notice"><span>!</span><p><strong>Research demonstration only.</strong> The model returns one of the four labels it learned from this dataset. It is not a medical diagnosis, and its score is not a calibrated probability. Do not use it for health decisions or upload identifiable patient images.</p></div><div class="prediction-card"><div class="upload-panel"><label class="upload-box" for="xray-file"><span class="upload-icon">↑</span><strong>Choose a chest X-ray image</strong><small>PNG, JPG, JPEG, BMP or TIFF · up to 12 MB</small><span class="upload-button">Choose image</span><input id="xray-file" type="file" accept="image/png,image/jpeg,image/bmp,image/tiff,.tif,.tiff"></label><div class="selected-file" id="selected-file">No image selected</div><button class="predict-button" id="predict-button" type="button" disabled>Run research model <span>→</span></button><div class="prediction-status" id="prediction-status" role="status">Start the local demo server to enable prediction.</div><div class="privacy-note">Image is sent only to the local server on your computer and is not saved.</div></div><div class="preview-panel"><div class="preview-head"><span>SELECTED IMAGE</span><span id="preview-state">WAITING FOR IMAGE</span></div><div class="preview-stage" id="preview-stage"><div class="preview-placeholder"><span>▧</span><small>Your image preview will appear here</small></div><img id="xray-preview" alt="Selected X-ray preview" hidden></div><div class="prediction-result" id="prediction-result" hidden><div class="result-label"><small>TOP DATASET LABEL · ADAPTIVE PATH</small><strong id="top-label">—</strong><span id="top-score">—</span></div><div class="scores-list" id="scores-list"></div><div class="quality-readout" id="quality-readout"></div><div class="timing-block"><h4>Same-image processing comparison</h4><p>Same model and upload; one timed pass per path. These single-image timings are illustrative and may vary with system load.</p><div class="timing-table-wrap"><table class="timing-table"><thead><tr><th>Path</th><th>Top label</th><th>Input prep</th><th>Inference</th><th>Total</th></tr></thead><tbody id="timing-body"></tbody></table></div><small id="timing-note" class="timing-note"></small></div></div></div></div></section>
+
+      <section class="workflow-section" id="workflow"><div class="section"><div class="section-heading"><div><div class="eyebrow">02 / THE APPROACH</div><h2>One image. A <em>smarter route.</em></h2></div><div class="section-note">The same classifier is trained and tested<br>with each preprocessing arm.</div></div><div class="workflow-grid"><article class="workflow-step"><span class="step-number">01</span><div class="step-icon icon-image">▧</div><h3>Read the X-ray</h3><p>Convert to grayscale and measure brightness, contrast, noise and sharpness for each image.</p><div class="step-tags"><span>OpenCV</span><span>NumPy</span></div></article><div class="step-connector">→</div><article class="workflow-step highlighted-step"><span class="step-number">02</span><div class="step-icon icon-route">⌘</div><h3>Choose preprocessing</h3><p>A transparent quality rule selects standard input, CLAHE, Wiener filtering or their combination.</p><div class="step-tags"><span>Rule-based</span><span>Per-image</span></div></article><div class="step-connector">→</div><article class="workflow-step"><span class="step-number">03</span><div class="step-icon icon-model">▦</div><h3>Classify & compare</h3><p>EfficientNet-B0 produced the results shown here; DenseNet-121 is the planned second-model comparison.</p><div class="step-tags"><span>PyTorch</span><span>4 classes</span></div></article><div class="step-connector">→</div><article class="workflow-step"><span class="step-number">04</span><div class="step-icon icon-eval">◷</div><h3>Evaluate robustness</h3><p>Measure accuracy, macro F1 and ROC-AUC on held-out and controlled degraded images.</p><div class="step-tags"><span>Scikit-learn</span><span>Stress tests</span></div></article></div></div></section>
+
+      <section class="section explorer-section" id="explorer"><div class="section-heading"><div><div class="eyebrow">03 / INTERACTIVE DEMO</div><h2>Explore the <em>quality router.</em></h2></div><div class="section-note">Adjust the example image statistics<br>to see the current rule respond.</div></div><div class="explorer-card"><div class="explorer-intro"><div class="explorer-badge">LIVE RULE DEMO</div><h3>What would the pipeline choose?</h3><p>These sliders illustrate the configured thresholds. They do not process or diagnose a real X-ray.</p><div class="router-result"><small>SELECTED PREPROCESSING</small><strong id="route-result">Standard preprocessing</strong><span id="route-reason">No configured quality threshold is crossed.</span></div></div><div class="slider-list"><label class="slider-control"><span><b>Brightness</b><small>pixel mean · 0–255</small></span><output id="brightness-value">118</output><input id="brightness" type="range" min="0" max="255" value="118"></label><label class="slider-control"><span><b>Contrast</b><small>pixel standard deviation</small></span><output id="contrast-value">43</output><input id="contrast" type="range" min="0" max="100" value="43"></label><label class="slider-control"><span><b>Noise estimate</b><small>high-pass residual proxy</small></span><output id="noise-value">12</output><input id="noise" type="range" min="0" max="50" value="12"></label><div class="threshold-hint"><span>ROUTING THRESHOLDS</span><span>Brightness &lt; 70 / &gt; 190 · Contrast &lt; 25 · Noise &gt; 18</span></div></div></div></section>
+
+      <section class="section limitations-section" id="limits"><div class="section-heading"><div><div class="eyebrow">04 / INTERPRET WITH CARE</div><h2>What this pilot <em>cannot tell us.</em></h2></div><div class="section-note">A research prototype, not a medical device.<br>More validation is needed.</div></div><div class="limits-grid"><article class="limit-card"><span>01</span><div><h3>Image-level split</h3><p>Patient identifiers are unavailable. The same person's images may appear across train and test sets.</p></div></article><article class="limit-card"><span>02</span><div><h3>Mixed data sources</h3><p>Classes come from different source collections, so a model may learn source-specific patterns.</p></div></article><article class="limit-card"><span>03</span><div><h3>One model, one seed</h3><p>The current expanded comparison uses one EfficientNet-B0 run per configuration. DenseNet and repeated-seed comparisons remain to be run.</p></div></article><article class="limit-card"><span>04</span><div><h3>No clinical validation</h3><p>Simple image statistics and synthetic corruptions do not establish diagnostic usefulness or safety.</p></div></article></div><div class="final-banner"><div><span class="banner-icon">✳</span><span><b>Research question</b><small>Does adaptive preprocessing help where image quality is poor?</small></span></div><strong>Evidence so far: mixed</strong></div></section>
+
+      <footer><a class="brand footer-brand" href="#top"><span class="brand-mark">X</span><span>XRAY<span class="brand-light">LAB</span></span></a><span>QUALITY-AWARE PREPROCESSING STUDY · STUDENT RESEARCH SHOWCASE</span><a href="#top">Back to top ↑</a></footer>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+/* Seven configurations appear together in the completed pilot chart. */
+.chart{gap:1.5%;padding-left:3px;padding-right:3px}
+.chart-bar{width:76%;min-width:16px}
+.chart-bar.palette-0{background:#9fbeb1}.chart-bar.palette-1{background:#c79b6a}.chart-bar.palette-2{background:#719ba1}.chart-bar.palette-3{background:#a893bb}.chart-bar.palette-4{background:#9aaa62}.chart-bar.palette-5{background:#d48773}.chart-bar.palette-6{background:#357d73}
+.chart-label{width:100%;bottom:-36px;white-space:normal;text-align:center;line-height:1.15;font-size:8px}
+.chart-legend{display:none}
+.chart-caption{margin-top:48px}
+@media(max-width:760px){.chart-caption{margin-top:48px}}

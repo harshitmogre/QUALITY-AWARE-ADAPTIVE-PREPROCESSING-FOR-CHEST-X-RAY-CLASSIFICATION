@@ -1,0 +1,15 @@
+{
+  "image_size": 224,
+  "clahe_clip_limit": 2.0,
+  "clahe_tile_grid_size": 8,
+  "bilateral_diameter": 5,
+  "bilateral_sigma_color": 35,
+  "bilateral_sigma_space": 35,
+  "wiener_window_size": 5,
+  "thresholds": {
+    "low_brightness": 70.0,
+    "high_brightness": 190.0,
+    "low_contrast": 25.0,
+    "high_noise": 18.0
+  }
+}
